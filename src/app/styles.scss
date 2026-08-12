@@ -1,0 +1,7 @@
+// The block's own styles are NOT here.
+//
+// They are a TypeScript string (`getFsSyntaxHighlighterStyles`) injected at runtime by
+// `FsSyntaxHighlighterStyles`, because these blocks are mounted into foreign documents — a
+// same-origin iframe rendering AI-authored HTML — where neither this stylesheet nor Angular's
+// component styles are ever loaded. Putting the rules here would style the block in the app and
+// leave it unstyled in the frame.

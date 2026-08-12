@@ -1,0 +1,14 @@
+{
+  "extends": "./node_modules/@firestitch/component-tools/config/tsconfig.cli.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "paths": {
+      "@firestitch/syntax-highlighter": [
+        "src/public_api.ts"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  }
+}

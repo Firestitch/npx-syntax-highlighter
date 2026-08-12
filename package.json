@@ -1,0 +1,68 @@
+{
+  "name": "@firestitch/syntax-highlighter",
+  "title": "Syntax Highlighter",
+  "description": "@firestitch/syntax-highlighter",
+  "version": "18.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Firestitch/ngx-syntax-highlighter"
+  },
+  "author": {
+    "name": "Firestitch",
+    "email": "admin@firestitch.com"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Firestitch/ngx-syntax-highlighter/issues"
+  },
+  "main": "package/index.js",
+  "typings": "package/index.d.ts",
+  "scripts": {
+    "package": "cd node_modules/@firestitch/component-tools && npm run cli:package",
+    "package:test": "cd node_modules/@firestitch/component-tools && npm run cli:package:test",
+    "package:publish": "cd node_modules/@firestitch/component-tools && npm run cli:package:publish",
+    "demo:build": "cd node_modules/@firestitch/component-tools && npm run cli:demo",
+    "serve": "cd node_modules/@firestitch/component-tools && npm run cli:serve",
+    "npm-update": "npx npm-check-updates -u \"/@firestitch/\" --target semver"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.2.7",
+    "@angular-devkit/core": "^18.2.7",
+    "@angular/animations": "^18.2.7",
+    "@angular/cdk": "^18.2.7",
+    "@angular/cli": "^18.2.7",
+    "@angular/common": "^18.2.7",
+    "@angular/compiler": "^18.2.7",
+    "@angular/compiler-cli": "^18.2.7",
+    "@angular/core": "^18.2.7",
+    "@angular/forms": "^18.2.7",
+    "@angular/material": "^18.2.7",
+    "@angular/platform-browser": "^18.2.7",
+    "@angular/platform-browser-dynamic": "^18.2.7",
+    "@angular/router": "^18.2.7",
+    "@firestitch/clipboard": "^18.0.0",
+    "@firestitch/component-tools": "^18.0.16",
+    "@firestitch/core": "^18.0.1",
+    "@firestitch/example": "^18.0.7",
+    "@firestitch/lint": "^18.0.19",
+    "@firestitch/message": "^18.0.2",
+    "@firestitch/style": "^18.0.54",
+    "hammerjs": "^2.0.8",
+    "rxjs": "^7.5.6",
+    "typescript": "5.4.5",
+    "zone.js": "~0.14.10"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "peerDependencies": {
+    "@firestitch/clipboard": ">=18.0.0"
+  },
+  "dependencies": {
+    "highlight.js": "^11.12.0",
+    "tslib": "^2.0.0"
+  }
+}

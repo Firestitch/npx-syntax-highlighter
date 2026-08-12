@@ -1,0 +1,8 @@
+@use '@firestitch/style/styles' as fs-style;
+
+@import '@firestitch/component-tools/assets/playground.scss';
+@import '../src/app/styles';
+@import '@firestitch/message/styles';
+
+
+@include fs-style.core();

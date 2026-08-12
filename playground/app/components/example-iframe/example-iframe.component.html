@@ -1,0 +1,7 @@
+<p>Blocks mounted into the frame: <strong>{{ mounted() }}</strong></p>
+
+<iframe
+  #frame
+  sandbox="allow-same-origin"
+  style="width: 100%; height: 420px; border: 1px solid #ddd;"
+  (load)="onLoad()"></iframe>
