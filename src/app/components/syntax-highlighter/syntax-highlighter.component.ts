@@ -44,6 +44,9 @@ import { FsSyntaxHighlighterStyles } from '../../services/syntax-highlighter-sty
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: true,
+  // Same name as the element, purely so the injected stylesheet can out-specify ambient CSS.
+  // See the specificity note in syntax-highlighter-styles.const.ts.
+  host: { class: 'fs-syntax-highlighter' },
 })
 export class FsSyntaxHighlighterComponent {
 

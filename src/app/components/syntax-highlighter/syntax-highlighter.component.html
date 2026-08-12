@@ -16,13 +16,17 @@
 }
 
 <!--
-  Two branches, not one, so the block is readable before its grammar chunk arrives: `html()` is null
-  until then and the raw source is interpolated instead, which Angular escapes for us. Once
-  highlighting lands, the markup is bound with [innerHTML] — highlight.js emits only <span class>,
-  and escapes its input by construction, so nothing here can turn source into markup.
+  The <code> carries our own class, NOT the conventional `hljs`. That name is global vocabulary —
+  @firestitch/example ships a light theme keyed on it — so wearing it means inheriting whatever the
+  surrounding page thinks a code block should look like.
+
+  Two branches so the block is readable before its grammar chunk arrives: `html()` is null until
+  then and the raw source is interpolated instead, which Angular escapes for us. Once highlighting
+  lands, the markup is bound with [innerHTML] — highlight.js emits only <span class>, and escapes
+  its input by construction, so nothing here can turn source into markup.
 -->
 @if (html(); as markup) {
-  <pre><code class="hljs" [innerHTML]="markup"></code></pre>
+  <pre><code class="fs-syntax-highlighter-code" [innerHTML]="markup"></code></pre>
 } @else {
-  <pre><code class="hljs">{{ code() }}</code></pre>
+  <pre><code class="fs-syntax-highlighter-code">{{ code() }}</code></pre>
 }

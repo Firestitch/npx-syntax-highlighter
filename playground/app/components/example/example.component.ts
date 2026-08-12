@@ -48,9 +48,31 @@ GROUP BY d.id
 ORDER BY versions DESC
 LIMIT 25;`;
 
-const UNKNOWN = `this language has no grammar registered
-so it renders as plain, readable text
-which is the point of the fallback`;
+const SCSS = `@use 'sass:color';
+
+$surface: #1e1e1e;
+$accent: #4ec9b0;
+$radius: 6px;
+
+@mixin scrollable($max) {
+  max-height: $max;
+  overflow: auto;
+}
+
+.fs-syntax-highlighter {
+  @include scrollable(480px);
+
+  background: $surface;
+  border-radius: $radius;
+
+  .copy {
+    color: color.adjust($accent, $lightness: -10%);
+
+    &:hover {
+      color: $accent;
+    }
+  }
+}`;
 
 
 @Component({
@@ -67,6 +89,6 @@ export class ExampleComponent {
   public readonly php = PHP;
   public readonly typescript = TYPESCRIPT;
   public readonly sql = SQL;
-  public readonly unknown = UNKNOWN;
+  public readonly scss = SCSS;
 
 }

@@ -47,10 +47,13 @@
     "@firestitch/component-tools": "^18.0.16",
     "@firestitch/core": "^18.0.1",
     "@firestitch/example": "^18.0.7",
+    "@firestitch/iframe": "^18.1.1",
     "@firestitch/lint": "^18.0.19",
     "@firestitch/message": "^18.0.2",
     "@firestitch/style": "^18.0.54",
+    "@types/lodash-es": "^4.17.12",
     "hammerjs": "^2.0.8",
+    "lodash-es": "^4.18.1",
     "rxjs": "^7.5.6",
     "typescript": "5.4.5",
     "zone.js": "~0.14.10"

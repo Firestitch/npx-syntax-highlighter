@@ -4,8 +4,20 @@ import { FS_DARK_PLUS_PALETTE, FsSyntaxPalette } from './dark-plus-palette.const
 /** `id` of the injected `<style>`, so injection into a given document is idempotent. */
 export const FS_SYNTAX_HIGHLIGHTER_STYLE_ID = 'fs-syntax-highlighter-styles';
 
-/** Root selector every rule is scoped under. See the specificity note in {@link getFsSyntaxHighlighterStyles}. */
-const HOST = 'fs-syntax-highlighter';
+/**
+ * Root selector every rule is scoped under — element AND a class of the same name, which the
+ * component sets on its own host.
+ *
+ * The doubling is purely for specificity, and it is load-bearing. This stylesheet is injected into
+ * documents it does not own, alongside CSS written by people who have never heard of it, and it has
+ * to win. `@firestitch/example` alone ships a light `.hljs` theme under `:host ::ng-deep`, which
+ * resolves to `[_nghost-x] .hljs-comment` — specificity (0,2,0). A bare `fs-syntax-highlighter
+ * .hljs-comment` is (0,1,1) and loses; with the class it is (0,2,1) and wins.
+ */
+const HOST = 'fs-syntax-highlighter.fs-syntax-highlighter';
+
+/** Class on the rendered `<code>`. Deliberately NOT `hljs` — see {@link getFsSyntaxHighlighterStyles}. */
+export const FS_SYNTAX_HIGHLIGHTER_CODE_CLASS = 'fs-syntax-highlighter-code';
 
 /**
  * highlight.js emits TIERED scopes.
@@ -110,7 +122,7 @@ ${HOST} .fs-syntax-highlighter-copy{display:inline-flex;align-items:center;justi
 ${HOST} .fs-syntax-highlighter-copy:hover{background:rgba(255,255,255,0.09);color:rgba(255,255,255,0.85);}
 ${HOST} .fs-syntax-highlighter-copy svg{width:15px;height:15px;display:block;fill:currentColor;}
 
-${HOST} pre{margin:0;padding:12px 14px;overflow-x:auto;background:transparent;}
+${HOST} pre{margin:0;padding:12px 14px;overflow-x:auto;background:transparent;border:0;}
 ${HOST} code{display:block;background:transparent;padding:0;border:0;border-radius:0;
   color:${palette.foreground};font-family:inherit;font-size:13px;line-height:1.55;
   white-space:pre;tab-size:4;}
@@ -126,10 +138,16 @@ ${HOST} code{display:block;background:transparent;padding:0;border:0;border-radi
  * `FsSyntaxHighlighterStyles` injects this into whatever `ownerDocument` the component lands in, so
  * the same text styles the block in the app and in the frame.
  *
- * Every rule is scoped under the `fs-syntax-highlighter` element. That is not tidiness: a guest
- * document's own `<style>` blocks sit in its `<body>`, i.e. LATER in the cascade than this
- * injection, so an author's bare `pre { … }` would win on equal specificity. Scoping under the
- * element puts these rules ahead.
+ * Every rule is scoped under the host element AND a class of the same name. That is not tidiness: a
+ * guest document's own `<style>` blocks sit in its `<body>`, i.e. LATER in the cascade than this
+ * injection, so an author's bare `pre { … }` would win on equal specificity, and a class-based rule
+ * would win outright.
+ *
+ * The rendered `<code>` deliberately does NOT carry the conventional `hljs` class. That name is
+ * global vocabulary — `@firestitch/example` ships a whole light theme keyed on it, and any app
+ * using ngx-highlightjs or a stock highlight.js stylesheet has one too — so wearing it means
+ * inheriting whatever the surrounding page thinks `.hljs` should look like. The `hljs-*` TOKEN
+ * classes are unavoidable (highlight.js emits them), but the container's identity is ours.
  */
 export function getFsSyntaxHighlighterStyles(
   palette: FsSyntaxPalette = FS_DARK_PLUS_PALETTE,
